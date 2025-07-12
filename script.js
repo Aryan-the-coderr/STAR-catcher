@@ -1,20 +1,20 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
-window.addEventListener("resize", () => {
+function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-});
+}
 
 let basket = {
   x: canvas.width / 2 - 50,
   y: canvas.height - 50,
   width: 100,
   height: 20,
-  speed: 5,
+  speed: 6,
   dx: 0
 };
 
@@ -34,23 +34,21 @@ function drawStars() {
     );
     gradient.addColorStop(0, "white");
     gradient.addColorStop(1, "gold");
-
     ctx.fillStyle = gradient;
-    ctx.shadowBlur = 8;
+    ctx.shadowBlur = 10;
     ctx.shadowColor = "gold";
 
     ctx.beginPath();
     ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
     ctx.fill();
   });
-
   ctx.shadowBlur = 0;
 }
 
 function drawScore() {
   ctx.fillStyle = "#000";
-  ctx.font = "20px Arial";
-  ctx.fillText(`Score: ${score}`, 20, 30);
+  ctx.font = "24px Arial";
+  ctx.fillText(`Score: ${score}`, 20, 40);
 }
 
 function update() {
@@ -80,7 +78,7 @@ function update() {
     stars.push({
       x: Math.random() * canvas.width,
       y: 0,
-      radius: 12,
+      radius: 10,
       speed: 3 + Math.random() * 2
     });
   }
@@ -108,19 +106,22 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowLeft" || e.key === "ArrowRight") basket.dx = 0;
 });
 
-// On-screen buttons
-document.getElementById("leftBtn").addEventListener("touchstart", () => {
-  basket.dx = -basket.speed;
-});
-document.getElementById("leftBtn").addEventListener("touchend", () => {
-  basket.dx = 0;
-});
+// On-screen buttons — support both touch & click
+const leftBtn = document.getElementById("leftBtn");
+const rightBtn = document.getElementById("rightBtn");
 
-document.getElementById("rightBtn").addEventListener("touchstart", () => {
-  basket.dx = basket.speed;
-});
-document.getElementById("rightBtn").addEventListener("touchend", () => {
-  basket.dx = 0;
-});
+function startMoveLeft() { basket.dx = -basket.speed; }
+function startMoveRight() { basket.dx = basket.speed; }
+function stopMove() { basket.dx = 0; }
+
+leftBtn.addEventListener("mousedown", startMoveLeft);
+leftBtn.addEventListener("mouseup", stopMove);
+leftBtn.addEventListener("touchstart", startMoveLeft);
+leftBtn.addEventListener("touchend", stopMove);
+
+rightBtn.addEventListener("mousedown", startMoveRight);
+rightBtn.addEventListener("mouseup", stopMove);
+rightBtn.addEventListener("touchstart", startMoveRight);
+rightBtn.addEventListener("touchend", stopMove);
 
 loop();
