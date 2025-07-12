@@ -24,7 +24,7 @@ canvas {
   font-size: 2.5rem;
   padding: 30px 40px;
   border: none;
-  border-radius: 50%;
+  border-radius: 30%;
   background: #333;
   color: white;
   box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
