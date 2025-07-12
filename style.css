@@ -10,14 +10,25 @@ canvas {
 }
 
 .controls {
-  position: absolute;
-  bottom: 20px;
+  position: fixed;
+  bottom: 30px;      /* a bit more breathing room */
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  gap: 50px;
 }
 
 .controls button {
-  font-size: 2rem;
-  padding: 10px 20px;
-  margin: 0 20px;
+  font-size: 3rem;   /* bigger icon */
+  padding: 25px 35px; /* more tap area */
+  border: none;
+  border-radius: 50px;  /* nice round buttons */
+  background: #333;
+  color: white;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.controls button:active {
+  transform: scale(0.95); /* little press effect */
 }
