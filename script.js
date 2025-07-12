@@ -1,20 +1,17 @@
 function drawStars() {
+  ctx.strokeStyle = "gold";
+  ctx.lineWidth = 2;
   stars.forEach(star => {
-    let gradient = ctx.createRadialGradient(
-      star.x, star.y, 0,
-      star.x, star.y, star.radius
-    );
-    gradient.addColorStop(0, "white");
-    gradient.addColorStop(1, "gold");
-
-    ctx.fillStyle = gradient;
     ctx.beginPath();
-    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.moveTo(star.x - star.radius, star.y);
+    ctx.lineTo(star.x + star.radius, star.y);
+    ctx.moveTo(star.x, star.y - star.radius);
+    ctx.lineTo(star.x, star.y + star.radius);
+    ctx.stroke();
 
-    // Optional: a slight glow
+    // Optional: add glow
     ctx.shadowBlur = 10;
     ctx.shadowColor = "gold";
   });
-  ctx.shadowBlur = 0; // reset so other drawings aren't blurred
+  ctx.shadowBlur = 0;
 }
