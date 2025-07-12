@@ -1,12 +1,14 @@
-body {
+html, body {
   margin: 0;
+  padding: 0;
   overflow: hidden;
+  height: 100%;
 }
 
 canvas {
   display: block;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .controls {
@@ -15,17 +17,17 @@ canvas {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 50px;
+  gap: 40px;
 }
 
 .controls button {
-  font-size: 3rem;
-  padding: 25px 35px;
+  font-size: 2.5rem;
+  padding: 30px 40px;
   border: none;
-  border-radius: 50px;
+  border-radius: 50%;
   background: #333;
   color: white;
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
   cursor: pointer;
 }
 
