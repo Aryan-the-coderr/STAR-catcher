@@ -11,7 +11,7 @@ canvas {
 
 .controls {
   position: fixed;
-  bottom: 30px;      /* a bit more breathing room */
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -19,10 +19,10 @@ canvas {
 }
 
 .controls button {
-  font-size: 3rem;   /* bigger icon */
-  padding: 25px 35px; /* more tap area */
+  font-size: 3rem;
+  padding: 25px 35px;
   border: none;
-  border-radius: 50px;  /* nice round buttons */
+  border-radius: 50px;
   background: #333;
   color: white;
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
@@ -30,5 +30,5 @@ canvas {
 }
 
 .controls button:active {
-  transform: scale(0.95); /* little press effect */
+  transform: scale(0.95);
 }
